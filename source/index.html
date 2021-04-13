@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- basic -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="iE=edge">
+        <!-- mobile metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <!-- site metas -->
+        <title>ClassWork! - Welcome</title>    
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- style css -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Responsive-->
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- fevicon -->
+        <link rel="icon" href="./icon/CW.png" type="img/icon">
+    </head>
+    <!-- body -->
+    
+    <body class="main-layout" onload="clearSessionStorage()">
+        <script src="functions.js"></script>
+        <!-- header -->
+        <header>
+            <!-- header inner -->
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                            <div class="full">
+                                <div class="center-desk">
+                                    <div class="logo">
+                                        <a href="index.html">Contacts</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                            <div class="menu-area">
+                                <div class="limit-box">
+                                    <nav class="main-menu">
+                                        <ul class="menu-area-main">                                        
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="register.html">Register</a></li>                                         
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-6">
+                            <div class="location_icon_bottum">
+                                <ul>
+                                    <li><img src="icon/call.png" alt="call"/>(+34) 682 85 46 26</li>
+                                    <li><img src="icon/email.png" alt="email"/>manuelsamexposito@gmail.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header inner -->
+        </header>
+       
+       
+        <!-- about -->
+        <div class="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">
+                        <div class="about_img">
+                            <h1>What is this?</h1>
+                            <p>
+                                This application is a contact storage where you can add new people to your list, 
+                                delete them, edit their details or simply use the app to remember the phone number or the email 
+                                of your favourite people. <br /> <br />
+
+                                This app was developed using a HTML template for the frontend, Node.js for the backend 
+                                and MongoDB as the NoSQL database
+                            </p><br />
+                            <h2>Who made this?</h2>
+                            <p>
+                                I'm an 18 years old high school student who is growing as a backend developer focusing 
+                                in JavaScript, TypeScript, Node.js, Express, MongoDB and MySQL. <br /> <br />
+
+                                You cand find me on:
+                                <ul>
+                                    <li><a href="https://twitter.com/M4nuSe">Twitter</a></li>
+                                    <li><a href="https://github.com/M4nu37">GitHub</a></li>
+                                    <li><a href="https://www.linkedin.com/in/manuel-sampablo-da-silva-9768021b5/">LinkedIn</a></li>
+                                </ul>
+                                <br />
+                                or you can write me an email in the 'Contact the developer' section.
+                                
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">
+                        <div class="about_box">
+                            <h3>Contact</h3>
+                            <span>The developer</span>
+    
+                            <form action="sendMail" method="POST">
+                                
+                                Name <input type="text" name="name"><br><br>
+                                Email <input type="text" name="email"><br><br>
+                                <textarea placeholder="Write me something..." cols="28" rows="6" name="text"></textarea><br>
+                                <button type="submit">Send!</button>
+    
+                            </form> 
+                        </div>                
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end about -->
+    
+        <!-- Javascript files-->
+        <script src="js/jquery.min.js"></script>        
+        <script src="js/plugin.js"></script>
+        <!-- sidebar -->        
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>
