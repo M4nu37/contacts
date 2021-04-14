@@ -36,7 +36,7 @@ router.get('/:name/:pass', (req, res) => {
             
             (err, data) => {
                 if (err) throw err;
-
+                
                 // Send '404 not found' error message if the user is not registered
                 if (data.length === 0) {
                     res.status(404).json({
