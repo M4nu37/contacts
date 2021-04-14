@@ -1,68 +1,68 @@
-// Import NPM modules
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const url = "mongodb+srv://ManuSE:Admin1@cluster0.mbbyj.mongodb.net/usersDB?retryWrites=true&w=majority";
 const user = require('../models/user_model');
 
+
 router.use(express.urlencoded({ extended: true }));
 
-// Handling GET requests
-router.post('/:name/:contactName/:contactNumber', (req, res, next) => {    
-
-    let userName = req.params.name;
+// Handling the GET requests
+router.get('/:name/:pass', (req, res) => {
     
-    let contactInfo = { 
-        name: req.params.contactName,
-        number: req.params.contactNumber
-    }     
+    // Get the ULR parameters 
+    let userName = req.params.name;
+    let userPass = req.params.pass;
 
     try {
-        async function run () {
+        // MongoDB connection to check if the user exists and log him in
+        async function run() {
 
+            // Stablish connection with Mongo via mongoose
             mongoose.connect(url, {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true
             });
-    
-            const User = user;
-    
-            await User.updateOne({
-                name: userName
+            
+            // defining the user schema and model from:        
+            const User = user;  // models/user_model.js
+            
+
+            // Check if the user already exists in the collection
+            await User.find({ 
+                name: userName,
+                password: userPass
             }, 
             
-            // Add the contact to the contact list in the database
-            {
-                $addToSet: { contacts: { contactInfo } }
-            },
-            
-            (err, result) => {
+            (err, data) => {
                 if (err) throw err;
-                console.log(result.nModified)
-    
-                switch (result.nModified) {
-    
-                    // Send '500' error message and status if the contact already exists
-                    case 0: {                    
-                        res.status(500).json({
-                            message: 'Contact already registered'
-                        });
-                    }
-    
-                    // Send '202' status and a 'succes' message if the contact was correctly added
-                    case 1: {
-                        res.status(202).json({
-                            message: 'Contact added succesfuly'
-                        });
-                    }
-                }            
-            });
+                
+                // Send '404 not found' error message if the user is not registered
+                if (data.length === 0) {
+                    res.status(404).json({
+                        message: '404 not found'
+                    });
+                    res.end();
+                }
+
+                // If the user is in the DB, then send an 'accepted' message
+                else {
+                    res.status(202).json({
+                        message: 'Accepted'
+                    });
+                    console.log(userName + ' loged in');
+                    res.end();
+                }
+            }); 
+            
+
+            
+            // Check if either the user is a Student or a Professor and register it
         }
-    
         // Run the connection
         run();
     }
-
+        
     // In case that's any error, throw it
     catch (e) {
         console.log(e);
