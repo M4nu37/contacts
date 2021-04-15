@@ -6,20 +6,28 @@ function redirectLogIn() {
     window.location.href="login.html";
 }
 
+function redirectMain() {
+    window.location.href="main.html";
+}
+
 function clearSessionStorage() {
     sessionStorage.removeItem('user');
+}
+
+function reload() {
+    window.location.reload();
 }
 
 // Function to log in the user
 function login() {
     
-    // Define the name, password and role got from login.html
+    // Define the name & password got from login.html
     let name = document.getElementById('user').value
     let password = document.getElementById('pass').value
 
     sessionStorage.setItem('user', name);
 
-    fetch('http://192.168.1.10:8080/login/' + name + '/' + password, {
+    fetch('http://192.168.1.24:8080/login/' + name + '/' + password, {
         method: 'GET'
     })      
 
@@ -32,7 +40,8 @@ function login() {
             window.location.href = '/main.html'
         }
         else {
-            window.location.reload();
+            alert(data.message);
+            reload();
         }        
     });    
 }
@@ -41,7 +50,7 @@ function login() {
 // Function to register the user
 function register() {
     
-    // Define the name, password and role got from login.html
+    // Define the name & password got from login.html
     let name = document.getElementById('user').value
     let password = document.getElementById('pass').value
     let password2 = document.getElementById('pass2').value
@@ -49,7 +58,7 @@ function register() {
     sessionStorage.setItem('user', name);
 
     if (password === password2 && password.length >= 5) {
-        fetch('http://192.168.1.10:8080/register/' + name + '/' + password, {
+        fetch('http://192.168.1.24:8080/register/' + name + '/' + password, {
             method: 'POST'
         })      
     
@@ -57,19 +66,20 @@ function register() {
         
         .then(data => { console.log(data);
             if (data.message === 'User was created') {
-                window.location.href = '/main.html';
+                redirectMain();
             }
             if (data.message === 'The user already exists') {                
-                window.location.reload();
+                reload();
                 console.log(data.message);
             }
         });
     }
 
     else {
-        window.location.reload();
+        reload();
     }        
 }
+// End of register function
 
 
 // Function to display the contacts in main
@@ -82,7 +92,7 @@ function showContacts() {
     }
 
     // Fetch the API to get the user contact list
-    fetch('http://192.168.1.10:8080/main/' + name, {
+    fetch('http://192.168.1.24:8080/main/' + name, {
         method: 'GET'
     })      
 
@@ -98,31 +108,89 @@ function showContacts() {
 
         // If there are contacts, display them in 'main.html'
         else {
-            let contacts = [];
+            let contactName = '';
+            let contactNumber = '';
+            let contactEmail = '';
+            
+            // Use the for loop to display every single contact in your DB
+            for (let x = 0; x < data.message[0].contacts.length; x++) {
 
-            for (let x = 1; x <= data.message[0].contacts.length; x ++) {
-                contacts.push(data.message[0].contacts[x]);
-            }
-            document.getElementById('classes').innerHTML = contacts;
-            console.log(contacts);
+                // Update the variables with the contacts info
+                contactName = JSON.stringify(data.message[0].contacts[x].contactInfo.name);
+                contactNumber = JSON.stringify(data.message[0].contacts[x].contactInfo.number);
+                contactEmail = JSON.stringify(data.message[0].contacts[x].contactInfo.email);
+
+                // Display the info in 'main.html'
+               document.getElementById('contacts').innerHTML += `
+                    <div> 
+                        <strong > Name: </strong> <span id="name">`+ contactName +'</span>'+
+                        '<strong> Number: </strong> <span id="phone">'+ contactNumber +'</span>'+
+                        '<strong> Email: </strong> <span id="email">'+ contactEmail + '</span>' +
+                        `<br />
+                        <button onclick="deleteContact()"> DELETE </button>
+                    </div><br />
+                `; 
+            }            
         }
     });
 }
+// End of display function
 
 
 // Function to add a contact
 function addContact() {
-    let contactName = document.getElementById('className').value;
-    let contactNumber = document.getElementById('className').value;
+    let contactName = document.getElementById('name').value;
+    let contactNumber = document.getElementById('phone').value;
+    let contactEmail = document.getElementById('email').value;
     let name = sessionStorage.getItem('user');
-    let role = sessionStorage.getItem('role');
+
+    
 
     // Fetch the API to show 
-    fetch('http://192.168.1.10:8080/main/' + name + '/' + role + '/' + contactName + '/' + contactNumber, {
+    fetch('http://192.168.1.24:8080/addContact/' + name + '/' + contactName + '/' + contactNumber + '/' + contactEmail, {
         method: 'POST'
     })
 
     .then(res => res.json())
 
-    .then(data => { console.log(data); })
+    .then(data => { console.log(data); 
+
+        if (data.message === "Contact added succesfuly") {
+            redirectMain();
+        }
+        else {
+            alert(data.message)
+            reload();
+        }
+    })
 }
+
+
+// Function to delete a contact
+function deleteContact() {
+
+    let contactName = document.getElementById('name').innerHTML.replace(/"/g,"");
+    let contactNumber = document.getElementById('phone').innerHTML.replace(/"/g,"");
+    let contactEmail = document.getElementById('email').innerHTML.replace(/"/g,"");
+    console.log(contactName);
+
+    let name = sessionStorage.getItem('user');
+
+    fetch('http://192.168.1.24:8080/deleteContact/' + name + '/' + contactName + '/' + contactNumber + '/' + contactEmail, {
+        method: 'DELETE'
+    })
+
+    .then(res => res.json())
+
+    .then(data => { console.log(data); 
+
+        if (data.message === "Contact deleted succesfuly") {
+            reload();
+        }
+        else {
+            alert(data.message)
+            reload();
+        }
+    })
+}
+// End of delete contact function
