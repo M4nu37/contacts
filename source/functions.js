@@ -123,11 +123,11 @@ function showContacts() {
                 // Display the info in 'main.html'
                document.getElementById('contacts').innerHTML += `
                     <div> 
-                        <strong > Name: </strong> <span id="name">`+ contactName +'</span>'+
-                        '<strong> Number: </strong> <span id="phone">'+ contactNumber +'</span>'+
-                        '<strong> Email: </strong> <span id="email">'+ contactEmail + '</span>' +
+                        <strong > Name: </strong> <span id="name`+x+`">`+ contactName +'</span>'+
+                        '<strong> Number: </strong> <span id="phone'+x+'">'+ contactNumber +'</span>'+
+                        '<strong> Email: </strong> <span id="email'+x+'">'+ contactEmail + '</span>' +
                         `<br />
-                        <button onclick="deleteContact()"> DELETE </button>
+                        <button onclick="deleteContact(`+x+`)"> DELETE </button>
                     </div><br />
                 `; 
             }            
@@ -167,13 +167,10 @@ function addContact() {
 
 
 // Function to delete a contact
-function deleteContact() {
-
-    let contactName = document.getElementById('name').innerHTML.replace(/"/g,"");
-    let contactNumber = document.getElementById('phone').innerHTML.replace(/"/g,"");
-    let contactEmail = document.getElementById('email').innerHTML.replace(/"/g,"");
-    console.log(contactName);
-
+function deleteContact(n) {
+    let contactName = document.getElementById('name' + n).innerHTML.replace(/"/g,"");
+    let contactNumber = document.getElementById('phone' + n).innerHTML.replace(/"/g,"");
+    let contactEmail = document.getElementById('email' + n).innerHTML.replace(/"/g,"");
     let name = sessionStorage.getItem('user');
 
     fetch('http://192.168.1.24:8080/deleteContact/' + name + '/' + contactName + '/' + contactNumber + '/' + contactEmail, {
