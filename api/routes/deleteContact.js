@@ -6,8 +6,10 @@ const user = require('../models/user_model');
 
 router.use(express.urlencoded({ extended: true }));
 
-// Handling delete requests
+// Handling DELETE requests
 router.delete('/:name/:contactName/:contactNumber/:contactEmail', (req, res, next) => {
+    
+    // Get the ULR parameters
     let userName = req.params.name;
     
     let contactInfo = {
@@ -19,13 +21,16 @@ router.delete('/:name/:contactName/:contactNumber/:contactEmail', (req, res, nex
     try {
         async function run () {
 
+            // Stablish connection with Mongo via mongoose
             mongoose.connect(url, {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true
             });
-    
-            const User = user;
-    
+            
+            // defining the user schema and model from:
+            const User = user; // models/user_model.js
+            
+            // Find the user
             await User.updateOne({
                 name: userName
             }, 
