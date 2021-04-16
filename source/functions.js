@@ -127,7 +127,7 @@ function showContacts() {
                         '<strong> Number: </strong> <span id="phone'+x+'">'+ contactNumber +'</span>'+
                         '<strong> Email: </strong> <span id="email'+x+'">'+ contactEmail + '</span>' +
                         `<br />
-                        <button onclick="deleteContact(`+x+`)"> DELETE </button>
+                        <button onclick="deleteContact(`+x+`)" value="`+x+`"> DELETE </button>
                     </div><br />
                 `; 
             }            
@@ -191,3 +191,8 @@ function deleteContact(n) {
     })
 }
 // End of delete contact function
+
+
+//Edit contact
+let contactPosition = documentGetElementById(id).value;
+sessionStorage.setItem('position', contactPosition);
