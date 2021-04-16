@@ -4,11 +4,31 @@
         <title>Contacts - Home</title>
         <!-- favicon -->
         <link rel="icon" href="./icon/CW.png" type="img/icon">
+
+        <link rel="stylesheet" href="/source/css/my.css" type="text/css">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+
+        <!--My own css-->
+        <link rel="stylesheet" href="css/my.css" type="text/css">
     </head>
 
     <body onload="showContacts()">
-        <script src="functions.js"></script>
-        <span><a href="addContact.html">ADD</a></span>
+        <script src="functions.js"></script>   
+        <h1 class="head">Your contacts</h1> <br>
+        <button onclick="redirectAddContact()" class="btn btn-primary add">ADD</button>
+        <button onclick="redirectLogIn()" class="btn btn-primary logout">LOG OUT</button>
         <div id="contacts"></div>
+        
     </body>
 </html>
