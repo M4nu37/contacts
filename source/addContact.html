@@ -4,16 +4,41 @@
         <title>Contacts - Add contact</title>
         <!-- favicon -->
         <link rel="icon" href="./icon/CW.png" type="img/icon">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+
+        <!--My own css-->
+        <link rel="stylesheet" href="css/my.css" type="text/css">
     </head>
 
     <body>
         <script src="functions.js"></script>
-        <div>
-            Name <input type="text" id="name"><br /><br />
-            Phone number <input type="text" id="phone"><br /><br />
-            Email <input type="text" id="email"><br /><br />
-            <button onclick="addContact()">ADD</button>
-            <button onclick="redirectMain()">GO BACK</button>
+        
+        <h1>Add a contact</h1>
+
+        <div class="form">
+            <label for="name">Name:</label> 
+            <input type="text" class="form-control" id="name"><br /><br />
+            <label for="phone">Phone number:</label>
+            <input type="text" class="form-control" id="phone"><br /><br />
+            <label for="email">Email:</label> 
+            <input type="email" class="form-control" id="email"><br /><br />
+            <button onclick="addContact()" class="btn btn-primary">ADD</button>
+            <button onclick="redirectMain()" class="btn btn-primary">GO BACK</button>
         </div>
     </body>
 </html>
