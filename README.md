@@ -1,6 +1,6 @@
 # Contacts App
 
-This application is a contact storage where you can add new people to your list, delete them, edit their details or simply use the app to remember the phone number or the email of your favourite people.
+This application is a contact storage where you can add new people to your list, delete them, edit their details or simply use the app to remember the phone number or the email of your favorite people.
 
 This app was developed using a HTML template for the frontend, Node.js for the backend and MongoDB as the NoSQL database.
 
