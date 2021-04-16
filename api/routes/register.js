@@ -37,6 +37,8 @@ router.post('/:name/:pass', (req, res) => {
             (err, data) => {
                 if (err) throw err;
 
+                console.log(data)
+
                 // Insert the new user to the collection and send a 'created' message
                 if (data.length === 0) {
                     User.create({ 
