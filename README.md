@@ -8,9 +8,9 @@ This app has been made by an 18 years old high school student who is growing as 
 
 You cand find me on:
 
-    Twitter (https://twitter.com/M4nuSe)
-    LinkedIn (https://www.linkedin.com/in/manuel-sampablo-da-silva-9768021b5/)
-    Stack Overflow (https://stackoverflow.com/users/13891757/manu-sampablo)
+- Twitter (https://twitter.com/M4nuSe)
+- LinkedIn (https://www.linkedin.com/in/manuel-sampablo-da-silva-9768021b5/)
+- Stack Overflow (https://stackoverflow.com/users/13891757/manu-sampablo)
 
 
 or you can follow me on GitHub ;)
