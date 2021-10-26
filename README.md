@@ -4,7 +4,7 @@ This application is a contact storage where you can add new people to your list,
 
 This app was developed using a HTML template for the frontend, Node.js for the backend and MongoDB as the NoSQL database.
 
-This app has been made by an 18 years old high school student who is growing as a backend developer focusing in JavaScript, TypeScript, Node.js, Express, MongoDB and MySQL.
+This app has been made by an 18 years old college student who is growing as a backend developer focusing in JavaScript, TypeScript, Node.js, Express, MongoDB and MySQL.
 
 You cand find me on:
 
